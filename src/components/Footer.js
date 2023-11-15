@@ -22,7 +22,7 @@ const Footer = () =>{
         </ul>
 
         <ul>
-          <li>금융상품</li>
+          <li><Link to="/finance">금융상품</Link></li>
           <li>이젠 생명</li>
           <li>이젠 화재</li>
           <li>이젠 멤버스</li>
@@ -30,11 +30,11 @@ const Footer = () =>{
         </ul>
 
         <ul>
-          <li>고객센터</li>
+          <li><Link to="/customer">고객센터</Link></li>
           <li>공지사항</li>
-          <li>자주묻는 질문</li>
+          <li><Link to="/qna">자주묻는 질문</Link></li>
           <li>이용약관</li>
-          <li>개인정보처리방침</li>
+          <li><Link to="/security">개인정보처리방침</Link></li>
         </ul>
 
       </div>

@@ -9,7 +9,6 @@ import Footer from './components/Footer';
 import Main from './pages/Main';
 import AccountList from './pages/AccountList';
 import AccountOpen from './pages/AccountOpen';
-import AccountTransfer from './pages/AccountTransfer';
 import Approval from './pages/Approval';
 import Login from './pages/Login';
 import Signup from './pages/Signup';

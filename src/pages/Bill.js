@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/Bill.css';
 import { Accordion, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { IMG_PATH } from '../constants/path';
 
 const Bill = () => {
   return (
@@ -16,37 +17,37 @@ const Bill = () => {
           <div className='bill-icon'>
             <div>
               <Link to="/event">
-                <img src={process.env.PUBLIC_URL + '/img/paperbill1.png'} alt="paperbill1" href="#" className='icons1' />
+                <img src={IMG_PATH + '/img/paperbill1.png'} alt="paperbill1" href="#" className='icons1' />
               </Link>
               <strong>지로납부</strong>
             </div>
             <div>
               <Link to="/event">
-                <img src={process.env.PUBLIC_URL + '/img/phonebill.png'} alt="phonebill" href="#" className='icons1' />
+                <img src={IMG_PATH + '/img/phonebill.png'} alt="phonebill" href="#" className='icons1' />
               </Link>
               <strong>통신요금</strong>
             </div>
             <div>
               <Link to="/event">
-                <img src={process.env.PUBLIC_URL + '/img/waterbill.png'} alt="waterbill" href="#" className='icons1' />
+                <img src={IMG_PATH + '/img/waterbill.png'} alt="waterbill" href="#" className='icons1' />
               </Link>
               <strong>수도요금</strong>
             </div>
             <div>
               <Link to="/event">
-                <img src={process.env.PUBLIC_URL + '/img/tunderbill.png'} alt="tunderbill" href="#" className='icons1' />
+                <img src={IMG_PATH + '/img/tunderbill.png'} alt="tunderbill" href="#" className='icons1' />
               </Link>
               <strong>전기요금</strong>
             </div>
             <div>
               <Link to="/event">
-                <img src={process.env.PUBLIC_URL + '/img/housebill.png'} alt="housebill" href="#" className='icons1' />
+                <img src={IMG_PATH + '/img/housebill.png'} alt="housebill" href="#" className='icons1' />
               </Link>
               <strong>주택관리비</strong>
             </div>
             <div>
               <Link to="/event">
-                <img src={process.env.PUBLIC_URL + '/img/collegebill.png'} alt="collegebill" href="#" className='icons1' />
+                <img src={IMG_PATH + '/img/collegebill.png'} alt="collegebill" href="#" className='icons1' />
               </Link>
               <strong>대학등록금</strong>
             </div>

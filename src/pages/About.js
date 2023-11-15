@@ -66,11 +66,6 @@ const About = () => {
                 );
               })
               }
-              {/* {
-            [1, 2, 3].map(data => {return (
-              <li>{data.name}</li>
-            );})
-          } */}
             </ul>
 
           </div>
@@ -79,8 +74,6 @@ const About = () => {
         <div id='kakao-map' style={{ width: '900px', height: '700px' }} />
       </div>
     </div>
-    // <Container className='About my-2'>
-    // </Container>
   );
 }
 

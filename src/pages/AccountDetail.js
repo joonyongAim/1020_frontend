@@ -31,6 +31,7 @@ const AccountDetail = ({accountInfo}) => {
             <th>맡기신 금액</th>
             <th>잔액</th>
             <th>취급점</th>
+            <th>거래 메모</th>
           </tr>
         </thead>
         {
@@ -38,10 +39,11 @@ const AccountDetail = ({accountInfo}) => {
             total = total - transaction.money;
             return (
               <tr key={i}>
-                <td className="text-start">{transaction.time}</td>
+                <td className="text-start">{new Date(transaction.time).toLocaleDateString('ko-KR')}</td>
                 <td className="text-end">{transaction.money > 0 ? transaction.money.toLocaleString('ko-KR')+'원' : ''}</td>
                 <td className="text-end">{transaction.money > 0 ? '' : (-transaction.money).toLocaleString('ko-KR')+'원'}</td>
                 <td className="text-end">{total.toLocaleString('ko-KR')+'원'}</td>
+                <td className="text-end">{transaction.subject}</td>
                 <td className="text-end">{transaction.memo}</td>
               </tr>
             );

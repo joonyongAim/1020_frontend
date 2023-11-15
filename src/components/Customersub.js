@@ -2,6 +2,7 @@ import '../styles/Customersub.css';
 import React from 'react';
 import { Accordion } from "react-bootstrap";
 import { Link } from 'react-router-dom';
+import { IMG_PATH } from '../constants/path';
 
 const Customersub = () => {
   return (
@@ -96,7 +97,7 @@ const Customersub = () => {
         </Accordion>
 
         <div className='customersub-num'>
-          <img src={process.env.PUBLIC_URL + '/img/customer2.png'} alt="icon" href="#" />
+          <img src={IMG_PATH + '/img/customer2.png'} alt="icon" href="#" />
           <Link to="/customer" style={{ textDecoration: "none", color: "black" }}>
             <h3><strong>고객센터</strong></h3>
           </Link>

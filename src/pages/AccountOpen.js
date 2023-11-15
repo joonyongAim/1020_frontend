@@ -67,8 +67,13 @@ function AccountOpen({setUpdate}) {
           if((document.querySelector('#no').checked === true) && (document.querySelector('#no2').checked === true)){
             axiosInstance.post('/account')
               .then(response => {
-                setUpdate(false);
-                navigate('/account');
+                if(response.status==200) {
+                  alert('계좌가 개설되었습니다.');
+                  setUpdate(false);
+                  navigate('/account');
+                } else {
+                  alert('계좌 개설에 실패했습니다. 권한이 없는 경우, 은행에 문의해주세요.');
+                }
               }).catch(error => alert(`에러가 발생했습니다.`))
           } else
             alert(`제출 실패하셨습니다.`);
