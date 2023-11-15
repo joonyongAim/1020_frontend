@@ -3,6 +3,7 @@ import React from 'react';
 import { Accordion } from "react-bootstrap";
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import { IMG_PATH } from '../constants/path';
 
 const CustomerService = () => {
   return (
@@ -97,7 +98,7 @@ const CustomerService = () => {
         </Accordion>
 
         <div className='customer-num'>
-          <img src={process.env.PUBLIC_URL + '/img/customer2.png'} alt="icon" href="#" />
+          <img src={IMG_PATH + '/img/customer2.png'} alt="icon" href="#" />
           <Link to="/customer" style={{ textDecoration: "none", color: "black" }}>
             <h3><strong>고객센터</strong></h3>
           </Link>
@@ -110,7 +111,7 @@ const CustomerService = () => {
         {/* <h2><strong>고객센터</strong></h2> */}
         {/* <hr style={{ width: "250px" }} /> */}
         <div className='customer-poster'>
-          <img src={process.env.PUBLIC_URL + '/img/cusposter.png'} alt="poster" href="#" />
+          <img src={IMG_PATH + '/img/cusposter.png'} alt="poster" href="#" />
         </div>
       </div>
     </div>

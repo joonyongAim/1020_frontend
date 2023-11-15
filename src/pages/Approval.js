@@ -14,7 +14,7 @@ function Approval () {
     axiosInstance.get(`/approval`)
     .then(response => {
       if(response.status == 200) {
-        alert('권한 변경 승인이 완료되었습니다.');
+        // alert('권한 변경 승인이 완료되었습니다.');
         setNotUserInfo(response.data);   
         console.log(response.data);
       }
@@ -46,17 +46,20 @@ function Approval () {
 
   // console.log(checkValue);
   return(
-    <div className="Approval-Container">
-      <h2 style={{color : "#137d34", textAlign : "center"}}>권한설정 페이지</h2>
-        <input type='checkbox' id="approvalSelectAllCheck" className="my-2" onChange={(e) => handleAllCheck(e.target.checked)} checked={checkValue.length === notUserInfo.length ? true : false} />
+    <div className="Approval-Container mainBorder p-5">
+      <h2 className='my-2 fontColor1'>권한설정 페이지</h2>
+      <hr style={{width:'100%'}}/>
+      <div className="approvalSelectAllCheckDiv">
+        <input type='checkbox' id="approvalSelectAllCheck" className="my-2 text-start" onChange={(e) => handleAllCheck(e.target.checked)} checked={checkValue.length === notUserInfo.length ? true : false} />
         <label for="approvalSelectAllCheck" className="ms-2 my-2">전체선택</label>
+      </div>
           {
             notUserInfo && notUserInfo.map((info, i) => {
               return(
-                <Accordion flush key={i} className="mb-2">
+                <Accordion key={i} className="mb-2">
                   <Accordion.Item eventKey={i}>
                     <Accordion.Header className="approval-accordion-header">
-                          <input className="approval-checkbox" type="checkbox" readOnly value={info} onClick={(e) => {
+                          <input className="approval-checkbox me-2" type="checkbox" readOnly value={info} onClick={(e) => {
                               e.stopPropagation() 
                               handleSingleCheck(e.target.checked, info)
                             }} checked={checkValue.includes(info) ? true : false}/> {info.username} 

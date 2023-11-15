@@ -1,4 +1,5 @@
 import Customersub from '../components/Customersub';
+import { IMG_PATH } from '../constants/path';
 import '../styles/Event.css';
 import React from 'react';
 
@@ -11,9 +12,9 @@ const Event = () => {
       <div className='event-rightbox'>
 
         <div className='event-banner'>
-          <img src={process.env.PUBLIC_URL + '/img/ezenbnn1.png'} alt="ezenbnn1" href="#" />
-          <img src={process.env.PUBLIC_URL + '/img/ezenbnn2.png'} alt="ezenbnn2" href="#" />
-          <img src={process.env.PUBLIC_URL + '/img/ezenbnn3.png'} alt="ezenbnn3" href="#" />
+          <img src={IMG_PATH + '/img/ezenBnn1.png'} alt="ezenbnn1" href="#" />
+          <img src={IMG_PATH + '/img/ezenBnn2.png'} alt="ezenbnn2" href="#" />
+          <img src={IMG_PATH + '/img/ezenBnn3.png'} alt="ezenbnn3" href="#" />
         </div>
       </div>
     </div>

@@ -1,12 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axiosInstance from "../utils/axiosInstance";
 
-const AccountDetail = ({accountInfo}) => {
+const AccountDetail = ({userInfo, accountInfo, setAccountInfo, setUpdate}) => {
   const transactionList = accountInfo.transactionList;
-  console.log(transactionList);
-  const getFormatDate = (timestamp) => {
-    const date = new Date(timestamp);
-    return `${date.time.getFullYear()}-${date.time.getMonth()+1}-${date.time.getDate()}`;
-  }
+  const navigate = useNavigate();
 
   if (!transactionList) {
     return (
@@ -18,9 +15,9 @@ const AccountDetail = ({accountInfo}) => {
       </div>
     );
   }
-  let total = 0;
+  let total = userInfo.role==='MANAGER' ? 1000000000 : 0;
   return(
-    <div className="AccountDetail mainBorder p-5">
+    <div className="AccountDetail mainBorder p-5" style={{Height:'500px'}}>
       <h2 className='my-2 fontColor1'>계좌내역</h2>
       <hr style={{width:'100%'}}/>
       <table>
@@ -32,6 +29,7 @@ const AccountDetail = ({accountInfo}) => {
             <th>잔액</th>
             <th>취급점</th>
             <th>거래 메모</th>
+            <th>수정</th>
           </tr>
         </thead>
         {
@@ -43,8 +41,23 @@ const AccountDetail = ({accountInfo}) => {
                 <td className="text-end">{transaction.money > 0 ? transaction.money.toLocaleString('ko-KR')+'원' : ''}</td>
                 <td className="text-end">{transaction.money > 0 ? '' : (-transaction.money).toLocaleString('ko-KR')+'원'}</td>
                 <td className="text-end">{total.toLocaleString('ko-KR')+'원'}</td>
-                <td className="text-end">{transaction.subject}</td>
-                <td className="text-end">{transaction.memo}</td>
+                <td className="text-start">{transaction.subject}</td>
+                <td className="text-start">{transaction.memo}</td>
+                <td className="text-center">
+                  <button className="btn btn-success text-end" onClick={() => {
+                    let _memo = prompt('수정할 내용을 입력하세요.');
+                    if(_memo) {
+                      axiosInstance.put(`/transaction/${transaction.id}`, {accountId:accountInfo.id, money:1, memo:_memo})
+                        .then(response => {
+                          if(response.status === 200) {
+                            alert('내용 수정 완료');
+                            setUpdate(false);
+                            navigate('/account');
+                          } else
+                            alert('내용 수정 실패');
+                        }).catch(error => console.log(error))
+                  }}}>수정</button>
+                </td>
               </tr>
             );
           })

@@ -63,11 +63,11 @@ function App() {
           <Route path='/user/mypage' element={isAuth? <MyPage userInfo={userInfo} setAuth={setAuth} setUpdate={setUpdate}/> : <Invalid/>}/>
           <Route path='/user/approval' element={userInfo.role==="ADMIN" ? <Approval/> : <Invalid/>}/>
           <Route path='/account' element={isAuth? <AccountList userInfo={userInfo} setUpdate={setUpdate} accountInfo={accountInfo} setAccountInfo={setAccountInfo}/> : <Invalid/>}/>
-          <Route path='/account/detail' element={isAuth? <AccountDetail accountInfo={accountInfo}/> : <Invalid/>}/>
+          <Route path='/account/detail' element={isAuth? (accountInfo.id !== '' ? <AccountDetail accountInfo={accountInfo} setUpdate={setUpdate} userInfo={userInfo} setAccountInfo={setAccountInfo}/> : <AccountList userInfo={userInfo} setUpdate={setUpdate} accountInfo={accountInfo} setAccountInfo={setAccountInfo}/>) : <Invalid/>}/>
           {/* <Route path='/account/detail' element={isAuth? <AccountSearch/> : <Invalid/>}/> */}
           <Route path='/account/open' element={isAuth? <AccountOpen setUpdate={setUpdate}/> : <Invalid/>}/>
           {/* <Route path='/transaction/:id' element={isAuth? <AccountTransfer userInfo={userInfo}/> : <Invalid/>}/> */}
-          <Route path='/transaction' element={isAuth? <Transaction userInfo={userInfo} setUpdate={setUpdate} accountInfo={accountInfo} setAccountInfo={setAccountInfo}/> : <Invalid/>}/>
+          <Route path='/transaction' element={isAuth? (accountInfo.id !== '' ? <Transaction userInfo={userInfo} setUpdate={setUpdate} accountInfo={accountInfo} setAccountInfo={setAccountInfo}/> : <AccountList userInfo={userInfo} setUpdate={setUpdate} accountInfo={accountInfo} setAccountInfo={setAccountInfo}/>) : <Invalid/>}/>
 
           <Route path='/qna' element={<Qna userInfo={userInfo}/>}/>
           <Route path='/exchange' element={<Exchange/>}/>

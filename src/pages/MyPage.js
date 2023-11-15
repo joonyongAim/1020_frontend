@@ -11,6 +11,7 @@ import { Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import MyModal from '../components/MyModal';
 import axiosInstance from '../utils/axiosInstance';
+import { IMG_PATH } from '../constants/path';
 
 const MyPage = ({ userInfo, setAuth, setUpdate }) => {
   const [modalShow, setModalShow] = React.useState(false);
@@ -23,7 +24,7 @@ const MyPage = ({ userInfo, setAuth, setUpdate }) => {
     <div className='mypage'>
       <div className='header-container'>
         {/* <Header/> */}
-        {/* <img src={process.env.PUBLIC_URL + '/img/ezenbank.png'} alt="EzenBank" /> */}
+        {/* <img src={IMG_PATH + '/img/ezenbank.png'} alt="EzenBank" /> */}
       </div>
 
       <div className='mypage-container'>
@@ -48,7 +49,7 @@ const MyPage = ({ userInfo, setAuth, setUpdate }) => {
                 </div>
                 <div className='mypage_total'>
                   <div className='my_profile_icon'>
-                    <img src={process.env.PUBLIC_URL + '/img/person.png'} alt="person" className='' />
+                    <img src={IMG_PATH + '/img/person.png'} alt="person" className='' />
                   </div>
                   <div className='my_profile_btn'>
                     <p className='text-bold' id="user_id">{userInfo.username}</p>
@@ -70,14 +71,20 @@ const MyPage = ({ userInfo, setAuth, setUpdate }) => {
                       :
                         <div style={{ display: "inline" }}>&nbsp;&nbsp;
                           <Link to='/' className='btn btn-outline-success updateBtn' onClick={()=>{
-                            axiosInstance.delete('/user')
-                              .then(response => {
-                                if(response.status === 200) {
-                                  setUpdate(false);
-                                  setAuth(false);
-                                  navigate('/');
-                                }
-                              }).catch(error => console.log(error))
+                            if(userInfo.accountList && userInfo.accountList.length != 0)
+                              alert('가입된 계좌가 있어서 탈퇴가 불가능합니다. 계좌 해지 후 탈퇴를 진행해주세요.');
+                            else{
+                              axiosInstance.delete('/user')
+                                .then(response => {
+                                  if(response.status === 200) {
+                                    alert('회원탈퇴 성공');
+                                    setUpdate(false);
+                                    setAuth(false);
+                                    navigate('/');
+                                  } else
+                                    alert('회원탈퇴 실패');
+                                }).catch(error => console.log(error))
+                            }
                           }}><span style={{ fontSize: "15px" }}>회원탈퇴</span></Link>
                         </div>
                     }
@@ -118,7 +125,7 @@ const MyPage = ({ userInfo, setAuth, setUpdate }) => {
                 {/* 시큐리티 배너 */}
                 <div className='d-flex justify-content-center' style={{ marginTop: "5%", height: "300px" }}>
                   <div className='bannerbox' style={{ marginRight: "5%" }}>
-                    <img className='ezenSecurity' src={process.env.PUBLIC_URL + '/img/security.png'} alt="security" />
+                    <img className='ezenSecurity' src={IMG_PATH + '/img/security.png'} alt="security" />
                   </div>
                 </div>
               </div>
@@ -128,32 +135,46 @@ const MyPage = ({ userInfo, setAuth, setUpdate }) => {
                 <div className='mycommandbox'>
                   {/* 메인 화면 아이콘 끌어오기 */}
                   <div>
-                    <img src={process.env.PUBLIC_URL + '/img/deposit.png'} alt="deposit" href="#" className='deposit' />
-                    <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;입출금</strong>
+                    <Link to="/account">
+                      <img src={IMG_PATH + '/img/deposit.png'} alt="deposit" href="/account" className='deposit' />
+                      <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;입출금</strong>
+                    </Link>
                   </div>
                   <div>
-                    <img src={process.env.PUBLIC_URL + '/img/subaccount.png'} alt="subaccount" href="#" className='subaccount' />
-                    <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;청약통장</strong>
+                    <Link to="/finance">
+                      <img src={IMG_PATH + '/img/subaccount.png'} alt="subaccount" href="/finance" className='subaccount' />
+                      <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;청약통장</strong>
+                    </Link>
                   </div>
                   <div>
-                    <img src={process.env.PUBLIC_URL + '/img/creditcard.png'} alt="creditcard" href="#" className='creditcard' />
-                    <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;신용카드 추가 생성</strong>
+                    <Link to="/finance">
+                      <img src={IMG_PATH + '/img/creditcard.png'} alt="creditcard" href="/finance" className='creditcard' />
+                      <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;신용카드 추가 생성</strong>
+                    </Link>
                   </div>
                   <div>
-                    <img src={process.env.PUBLIC_URL + '/img/fund.png'} alt="fund" href="#" className='fund' />
-                    <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;펀드</strong>
+                    <Link to="/finance">
+                      <img src={IMG_PATH + '/img/fund.png'} alt="fund" href="/finance" className='fund' />
+                      <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;펀드</strong>
+                    </Link>
                   </div>
                   <div>
-                    <img src={process.env.PUBLIC_URL + '/img/loan.png'} alt="loan" href="#" className='loan' />
-                    <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;대출</strong>
+                    <Link to="/finance">
+                      <img src={IMG_PATH + '/img/loan.png'} alt="loan" href="/finance" className='loan' />
+                      <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;대출</strong>
+                    </Link>
                   </div>
                   <div>
-                    <img src={process.env.PUBLIC_URL + '/img/portfolio.png'} alt="portfolio" href="#" className='portfolio' />
-                    <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;포트폴리오</strong>
+                    <Link to="/event">
+                      <img src={IMG_PATH + '/img/portfolio.png'} alt="portfolio" href="#" className='portfolio' />
+                      <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;포트폴리오</strong>
+                    </Link>
                   </div>
                   <div>
-                    <img src={process.env.PUBLIC_URL + '/img/sudoku.png'} alt="sudoku" href="#" className='sudoku' />
-                    <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;미니게임</strong>
+                    <Link to="/sudoku">
+                      <img src={IMG_PATH + '/img/sudoku.png'} alt="sudoku" href="/sudoku" className='sudoku' />
+                      <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;미니게임</strong>
+                    </Link>
                   </div>
                 </div>
 
@@ -162,30 +183,30 @@ const MyPage = ({ userInfo, setAuth, setUpdate }) => {
               {/* <div className='ex'>
                 <div className='mybox1'>
                   <div>
-                    <img src={process.env.PUBLIC_URL + '/img/deposit.png'} alt="deposit" href="#" className='deposit' />
+                    <img src={IMG_PATH + '/img/deposit.png'} alt="deposit" href="#" className='deposit' />
                     <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;입출금</strong>
                   </div>
                   <div>
-                    <img src={process.env.PUBLIC_URL + '/img/subaccount.png'} alt="subaccount" href="#" className='subaccount' />
+                    <img src={IMG_PATH + '/img/subaccount.png'} alt="subaccount" href="#" className='subaccount' />
                     <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;청약통장</strong>
                   </div>
                   <div>
-                    <img src={process.env.PUBLIC_URL + '/img/creditcard.png'} alt="creditcard" href="#" className='creditcard' />
+                    <img src={IMG_PATH + '/img/creditcard.png'} alt="creditcard" href="#" className='creditcard' />
                     <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;신용카드 추가 생성</strong>
                   </div>
                 </div>
                 <div className='mybox2'>
                   
                   <div>
-                    <img src={process.env.PUBLIC_URL + '/img/fund.png'} alt="fund" href="#" className='fund' />
+                    <img src={IMG_PATH + '/img/fund.png'} alt="fund" href="#" className='fund' />
                     <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;펀드</strong>
                   </div>
                   <div>
-                    <img src={process.env.PUBLIC_URL + '/img/loan.png'} alt="loan" href="#" className='loan' />
+                    <img src={IMG_PATH + '/img/loan.png'} alt="loan" href="#" className='loan' />
                     <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;대출</strong>
                   </div>
                   <div>
-                    <img src={process.env.PUBLIC_URL + '/img/portfolio.png'} alt="portfolio" href="#" className='portfolio' />
+                    <img src={IMG_PATH + '/img/portfolio.png'} alt="portfolio" href="#" className='portfolio' />
                     <strong style={{ fontSize: "18px" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;포트폴리오</strong>
                   </div>
                 </div>

@@ -1,11 +1,12 @@
 import React from 'react';
 import '../styles/ErrorPage.css';
+import { IMG_PATH } from '../constants/path';
 
 const ErrorPage = () => {
   return (
     <div className='error-container'>
       <div className='error-box'>
-        <img src={process.env.PUBLIC_URL + '/img/error.png'} alt="error" href="#" />
+        <img src={IMG_PATH + '/img/error.png'} alt="error" href="#" />
       </div>
       <div className='error-text'>
         <strong ><br />죄송합니다. 페이지를 찾을 수 없습니다.<br />

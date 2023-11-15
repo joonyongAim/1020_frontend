@@ -4,8 +4,8 @@ import Col from 'react-bootstrap/Col';
 import { PROBLEM_SETS } from '../constants/problemSet';
 import { useState } from 'react';
 import '../styles/PlaySudoku.css'
+import { IMG_PATH } from '../constants/path';
 const PlaySudoku = () => {
-  const IMG_PATH = 'https://20230601sy.github.io/0810/src/assets/';
   const [currentStage, setCurrentStage] = useState(PROBLEM_SETS.Expert01);
   // const [currentStage, setCurrentStage] = useState(PROBLEM_SETS.Test01);
   const [status, setStatus] = useState(false);
@@ -103,7 +103,7 @@ const PlaySudoku = () => {
         <Row>
           <Col>
             <div className='mb-5' style={{height:'150px', width:"1000px", overflow:'hidden'}}>
-              <img src={`${IMG_PATH}thumbnail_sdk.png`} alt="" style={{width:"100%"}}/>
+              <img src={`${IMG_PATH}/img/thumbnail_sdk.png`} alt="" style={{width:"100%"}}/>
             </div>
           </Col>
         </Row>
