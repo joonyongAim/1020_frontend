@@ -83,6 +83,7 @@ function Signup() {
       message[field] = userInfo[field] ? '' : messageList[field];
     })
     setMessage({...message});
+    console.log(userInfo);
   }, [userInfo])
 
   const changeHandler = e => {
